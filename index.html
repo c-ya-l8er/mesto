@@ -12,22 +12,77 @@
 <body class="page">
 
     <header class="header">
-        <img src="./images/header-logo.svg" alt="логотип Место" class="header__logo">
+        <img src="./images/header_logo.svg" alt="логотип Место" class="header__logo">
     </header>
     <main class="content">
         <div class="profile">
             <div class="profile__avatar"></div>
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <p class="profile__about">Исследователь океана</p>
                 <button class="profile__edit-btn"></button>
+                <p class="profile__about">Исследователь океана</p>
             </div>
             <button class="profile__add-btn"></button>
         </div>
+        <section class="gallery" aria-label="галерея фото">
+            <figure class="gallery__element">
+                <img src="./images/element-karachaevo.jpg" alt="Карачаевск">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Карачаевск</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+            <figure class="gallery__element">
+                <img src="./images/element-elbrus.jpg" alt="Гора Эльбрус">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Гора Эльбрус</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+            <figure class="gallery__element">
+                <img src="./images/element-dombay.jpg" alt="Домбай">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Домбай</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+            <figure class="gallery__element">
+                <img src="./images/element-elbrus.jpg" alt="Гора Эльбрус">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Гора Эльбрус</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+            <figure class="gallery__element">
+                <img src="./images/element-dombay.jpg" alt="Домбай">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Домбай</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+            <figure class="gallery__element">
+                <img src="./images/element-karachaevo.jpg" alt="Карачаево-Черкессия">
+                <figcaption class="gallery__caption">
+                    <p class="gallery__title">Карачаево-Черкессия</p>
+                    <button class="gallery__like-btn"></button>
+                </figcaption>
+            </figure>
+        </section>
     </main>
     <footer class="footer">
-
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <div class="popup">
+        <div class="popup__container">
+            <h3>Редактировать профиль</h3>
+            <div class="input">
+                <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_song">
+                <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_artist">
+                <button class="popup__submit-btn form__submit-btn_action_save">Сохранить</button>
+            </div>
+        </div>
+    </div>
     <script src="./pages/index.js"></script>
 </body>
 

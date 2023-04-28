@@ -1,7 +1,7 @@
-.profile {
+.gallery__caption {
+    max-width: 246px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 40px;
-    margin-bottom: 51px;
-  }
+    margin: auto;
+}
