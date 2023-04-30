@@ -7,4 +7,24 @@
   font-size: 42px;
   line-height: 48px;
   color: #ffffff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 420px) {
+  .profile__name {
+    min-width: 189px;
+    margin: auto;
+
+  }
+}
+@media screen and (max-width: 320px) {
+  .profile__name {
+    min-width: 189px;
+    margin: 0 0 0 46px;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
 }
