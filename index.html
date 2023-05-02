@@ -73,16 +73,17 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <!--<div class="popup">
-        <div class="popup__container">
-            <h3>Редактировать профиль</h3>
-            <div class="input">
-                <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_song">
-                <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_artist">
-                <button class="popup__submit-btn form__submit-btn_action_save">Сохранить</button>
+    <div class="popup" id="edit-form">
+        <form class="popup__container">
+            <button class="popup__close-btn"><img src="./images/close_icon.svg" alt="Закрыть"></button>
+            <h2 class="form__title">Редактировать профиль</h2>
+            <div class="form">
+                <input type="text" name="name" placeholder="Имя" class="form__field">
+                <input type="text" name="about" placeholder="О себе" class="form__field">
             </div>
-        </div>
-    </div>-->
+            <button class="form__submit-btn form__submit-btn_action_save">Сохранить</button>
+        </form>
+    </div>
     <script src="./pages/index.js"></script>
 </body>
 
