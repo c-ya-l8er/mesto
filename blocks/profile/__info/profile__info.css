@@ -9,8 +9,9 @@
   margin-left: 30px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 690px) {
   .profile__info {
+    max-width: 355px;
     margin: 26px auto 36px;
   }
 }

@@ -1,0 +1,9 @@
+.element__image {
+max-width: 282px;
+max-height: 282px;
+width: 100%;
+display: block;
+object-fit: cover;
+object-position: center;
+aspect-ratio: 1/1;
+}

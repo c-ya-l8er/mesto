@@ -2,8 +2,10 @@
   width: 100%;
   width: 120px;
   height: 120px;
-  background-image: url(../../../images/image_cousteau.jpg);
   background-size: cover;
   background-position: center;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1/1;
 }

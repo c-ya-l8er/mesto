@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000000;
+  background-color: #000000;
   border-radius: 2px;
   border: 0;
   color: #fff;
@@ -18,14 +18,14 @@
 }
 
 .popup__submit-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.8);
   transition: 0.5s;
 }
 
 @media screen and (max-width: 500px) {
   .popup__submit-btn {
-    height: 46px;
-    margin-top: 45px;
+    max-height: 46px;
+    margin-top: 15px;
     font-size: 14px;
     line-height: 17px;
   }

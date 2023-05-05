@@ -1,16 +1,16 @@
-.gallery {
+.elements {
   max-width: 880px;
+  margin: 0 auto;
+  padding-top: 51px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   row-gap: 20px;
   column-gap: 17px;
-  margin-top: 51px;
 }
 
-@media screen and (max-width: 320px) {
-  .gallery {
+@media screen and (max-width: 420px) {
+  .elements {
     max-width: 282px;
-    margin-top: 36px;
-    margin: auto;
+    padding-top: 36px;
   }
 }

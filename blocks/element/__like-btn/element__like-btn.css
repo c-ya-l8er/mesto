@@ -1,4 +1,4 @@
-.gallery__like-btn {
+.element__like-btn {
   width: 22px;
   height: 19px;
   margin-left: 0;
@@ -6,12 +6,12 @@
   background-image: url(../../../images/like_button.svg);
   background-size: cover;
   background-position: center;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
   border: 0;
   transition: 0.5s ease-in;
 }
 
-.gallery__like-btn:hover {
+.element__like-btn:hover {
   opacity: 0.5;
 }

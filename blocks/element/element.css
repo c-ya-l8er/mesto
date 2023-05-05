@@ -1,6 +1,6 @@
-.gallery__element {
+.element {
   max-width: 282px;
-  max-height: 361px;
+  width: 100%;
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;

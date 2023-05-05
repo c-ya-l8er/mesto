@@ -12,15 +12,15 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 690px) {
   .profile__name {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 30px;
   }
 }
 
 @media screen and (max-width: 420px) {
   .profile__name {
-    min-width: 189px;
+    max-width: 189px;
     margin: 0 0 0 46px;
     font-size: 27px;
     line-height: 33px;

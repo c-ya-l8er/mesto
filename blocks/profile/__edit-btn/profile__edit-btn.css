@@ -6,7 +6,7 @@
   background-image: url(../../../images/edit_button.svg);
   background-size: 10px;
   background-position: center;
-  background-color: black;
+  background-color: transparent;
   background-repeat: no-repeat;
   cursor: pointer;
   border: 1px solid #ffffff;
@@ -15,7 +15,7 @@
 }
 
 .profile__edit-btn:hover {
-  opacity: 0.6;
+  border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 @media screen and (max-width: 320px) {
