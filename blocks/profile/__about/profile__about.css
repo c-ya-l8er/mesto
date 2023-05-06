@@ -14,25 +14,10 @@
 
 @media screen and (max-width: 690px) {
   .profile__about {
-    max-width: 218px;
-    margin: 0 0 0 75px;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .profile__about {
     max-width: 189px;
-    margin: 0 0 0 45px;
+    margin: 0 0 0 50px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .profile__about {
-    max-width: 172px;
-    margin-left: 63px;
   }
 }
