@@ -14,8 +14,8 @@
     <header class="header">
         <img src="./images/header_logo.svg" alt="логотип Место" class="header__logo">
     </header>
-    <main class="content">
 
+    <main class="content">
         <section class="profile">
             <div class="profile__avatar" style="background-image: url(./images/image_cousteau.jpg);"></div>
             <div class="profile__info">
@@ -25,21 +25,20 @@
             </div>
             <button class="profile__add-btn" type="button" aria-label="Добавить"></button>
         </section>
-
+       
         <section class="cards" aria-label="галерея фото">
-
         </section>
-
     </main>
+
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_edit-profile">
+    <div class="popup popup__edit-profile">
         <div class="popup__container">
             <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="profile-edit-form">
+            <form class="popup__form popup__form_profile-edit-form" name="profile-edit-form">
                 <input class="popup__field popup__field_type_username" type="text" name="username" placeholder="Имя">
                 <input class="popup__field popup__field_type_about" type="text" name="about" placeholder="О себе">
                 <button class="popup__submit-btn" type="submit">Сохранить</button>
@@ -47,31 +46,29 @@
         </div>
     </div>
 
-    <div class="popup popup_add-place">
+    <div class="popup popup__add-card">
         <div class="popup__container">
             <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" name="new-place-form">
-                <input class="popup__field popup__field_type_placename" type="text" name="placename"
-                    placeholder="Название">
-                <input class="popup__field popup__field_type_link" type="text" name="link"
-                    placeholder="Ссылка на картинку">
+            <form class="popup__form popup__form_new-card-form" name="new-card-form">
+                <input class="popup__field popup__field_type_cardname" type="text" name="cardname" placeholder="Название">
+                <input class="popup__field popup__field_type_link" type="url" name="link" placeholder="Ссылка на картинку">
                 <button class="popup__submit-btn" type="submit">Создать</button>
             </form>
         </div>
     </div>
 
-    <div class="popup popup_open-image">
-        <figure class="popup__image">
+    <div class="popup popup__open-image">
+        <figure class="popup__figure">
             <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
-            <img class="popup__image" src="#" alt="Фото">
-            <figcaption class="popup_caption"></figcaption>
+            <img class="popup__image" src="" alt="Фото">
+            <figcaption class="popup__caption" type="text" name="cardname"></figcaption>
         </figure>
     </div>
 
     <template class="cards-template">
         <article class="card">
-            <img class="card__image" src="#" alt="Фото">
+            <img class="card__image" src="" alt="Фото">
             <div class="card__caption">
                 <h2 class="card__title"></h2>
                 <button class="card__like-btn" type="button" aria-label="Лайк"></button>
