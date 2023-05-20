@@ -1,8 +1,8 @@
 //модальные окна
 const popup = document.querySelector(".popup");
-const editPopup = document.querySelector(".popup__edit-profile");
-const addPopup = document.querySelector(".popup__add-card");
-const imagePopup = document.querySelector(".popup__open-image");
+const editPopup = document.querySelector(".popup_edit-profile");
+const addPopup = document.querySelector(".popup_add-card");
+const imagePopup = document.querySelector(".popup_open-image");
 
 //кнопки
 const editPopupButton = document.querySelector(".profile__edit-btn");
