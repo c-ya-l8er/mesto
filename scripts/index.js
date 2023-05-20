@@ -103,7 +103,6 @@ initialCards.forEach((el) => {
     popupTitle.textContent = el.name;
     popupImage.src = el.link;
     popupImage.alt = el.name;
-    console.log(el.name);
     openPopup(imagePopup);
   });
 
