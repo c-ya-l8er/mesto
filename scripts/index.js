@@ -86,7 +86,33 @@ openEditPopupButton.addEventListener("click", openPopupEdit);
 formProfileEdit.addEventListener("submit", formProfileEditSubmitHandler);
 
 //добавление карточек из массива
+initialCards.forEach((el) => {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  cardElement.querySelector(".card__title").textContent = el.name;
+  cardElement.querySelector(".card__image").src = el.link;
+  cardElement.querySelector(".card__image").alt = el.name;
 
+  cardElement
+    .querySelector(".card__like-btn")
+    .addEventListener("click", (evt) => {
+      evt.target.classList.toggle("card__like-btn_active");
+    });
+
+  cardElement
+    .querySelector(".card__trash-btn")
+    .addEventListener("click", () => {
+      cardElement.remove();
+    });
+
+  cardElement.querySelector(".card__image").addEventListener("click", () => {
+    popupTitle.textContent = el.name;
+    popupImage.src = el.link;
+    popupImage.alt = el.name;
+    openPopup(imagePopup);
+  });
+
+  cardsList.append(cardElement);
+});
 
 //добавление карточки
 addCard = (evt) => {
