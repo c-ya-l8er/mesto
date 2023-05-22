@@ -91,13 +91,11 @@ createCard = (el) => {
     .addEventListener("click", (evt) => {
       evt.target.classList.toggle("card__like-btn_active");
     });
-
   cardElement
     .querySelector(".card__trash-btn")
     .addEventListener("click", () => {
       cardElement.remove();
     });
-
   cardImage.addEventListener("click", () => {
     popupTitle.textContent = el.name;
     popupImage.src = el.link;
