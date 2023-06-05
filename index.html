@@ -44,12 +44,12 @@
             <form class="popup__form popup__form_profile-edit-form" name="profile_edit_form" novalidate>
                 <fieldset class="popup__set">
                     <label class="popup__field">
-                        <input class="popup__input popup__input_type_username" minlength='2' maxlength='40' required
+                        <input class="popup__input popup__input_type_username" id="username-input" minlength='2' maxlength='40' required
                             type="text" name="username" placeholder="Имя">
                         <span class="popup__input-error username-input-error"></span>
                     </label>
                     <label class="popup__field">
-                        <input class="popup__input popup__input_type_about" minlength="2" maxlength="200" required
+                        <input class="popup__input popup__input_type_about" id="about-input" minlength="2" maxlength="200" required
                             type="text" name="about" placeholder="О себе">
                         <span class="popup__input-error about-input-error"></span>
                     </label>
@@ -66,14 +66,14 @@
             <form class="popup__form popup__form_new-card-form" name="new_card_form" novalidate>
                 <fieldset class="popup__set">
                     <label class="popup__field">
-                        <input class="popup__input popup__input_type_cardname" minlength="1" maxlength="30" required
+                        <input class="popup__input popup__input_type_cardname" id="cardname-input" minlength="1" maxlength="30" required
                             type="text" name="cardname" placeholder="Название">
-                        <span class="popup__input-error cardname-input-error">Вы пропустили это поле.</span>
+                        <span class="popup__input-error cardname-input-error"></span>
                     </label>
                     <label class="popup__field">
-                        <input class="popup__input popup__input_type_link" required type="url" name="link"
+                        <input class="popup__input popup__input_type_link" id="link-input" required type="url" name="link"
                             placeholder="Ссылка на картинку">
-                        <span class="popup__input-error link-input-error">Введите адрес сайта.</span>
+                        <span class="popup__input-error link-input-error"></span>
                     </label>
                     <button class="popup__submit-btn popup__submit-btn_disabled" type="submit">Создать</button>
                 </fieldset>

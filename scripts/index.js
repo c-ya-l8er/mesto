@@ -162,3 +162,4 @@ initialCards.forEach((el) => {
 //formAddCard.addEventListener('input', function (evt) {
 // const isValid = cardInput.value.lenght > 0 && linkInput.value.lenght > 0
 // });
+
