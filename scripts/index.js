@@ -1,3 +1,14 @@
+/*const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  buttonElement: ".popup__submit-btn",
+  inactiveButtonClass: "popup__submit-btn_disabled",
+  inputErrorClass: "popup__input_invalid",
+  errorClass: "popup__input-error_active",
+};*/
+
+/*import enableValidation from "./validate.js";*/
+
 // модальные окна
 const editPopup = document.querySelector(".popup_edit-profile");
 const addPopup = document.querySelector(".popup_add-card");
@@ -52,10 +63,12 @@ const closePopup = (popupToClosed) =>
 
 openEditPopupButton.addEventListener("click", () => {
   openPopup(editPopup);
+  /*hideInputError(formProfileEdit, validationConfig);*/
 });
 
 openAddPopupButton.addEventListener("click", () => {
   openPopup(addPopup);
+  /*hideInputError(formAddCard)*/
 });
 
 closePopupButtons.forEach((button) => {
@@ -90,11 +103,13 @@ openPopupEdit = () => {
   aboutInput.value = profileAbout.textContent;
 };
 
+// форма заполнения редактирования профиля
 formProfileEditSubmitHandler = (evt) => {
   evt.preventDefault();
   closePopup(editPopup);
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
+  /*resetValidation(formProfileEdit);*/
 };
 
 openEditPopupButton.addEventListener("click", openPopupEdit);
@@ -146,20 +161,3 @@ formAddCard.addEventListener("submit", addCard);
 initialCards.forEach((el) => {
   cardsList.append(createCard(el));
 });
-
-//cardsList.addEventListener("click", function (evt) {
-//if (evt.target.classList.contains("card__like-btn")) {
-//evt.target.classList.toggle("card__like-btn_active");
-//}
-//});
-
-//cardsList.addEventListener("click", function (evt) {
-//if (evt.target.classList.contains("card__trash-btn")) {
-//  evt.target.classList.remove(".card");
-//}
-//});
-
-//formAddCard.addEventListener('input', function (evt) {
-// const isValid = cardInput.value.lenght > 0 && linkInput.value.lenght > 0
-// });
-
