@@ -1,13 +1,13 @@
-/*const validationConfig = {
+const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   buttonElement: ".popup__submit-btn",
   inactiveButtonClass: "popup__submit-btn_disabled",
   inputErrorClass: "popup__input_invalid",
   errorClass: "popup__input-error_active",
-};*/
+};
 
-/*import enableValidation from "./validate.js";*/
+enableValidation(validationConfig);
 
 // модальные окна
 const editPopup = document.querySelector(".popup_edit-profile");
@@ -19,6 +19,7 @@ const allPopups = document.querySelectorAll(".popup");
 const openEditPopupButton = document.querySelector(".profile__edit-btn");
 const openAddPopupButton = document.querySelector(".profile__add-btn");
 const closePopupButtons = document.querySelectorAll(".popup__close-btn");
+const submitButton = document.querySelector("popup__submit-btn_disabled");
 
 // редактирование профиля
 const profileName = document.querySelector(".profile__username");
@@ -41,12 +42,14 @@ const popupImage = document.querySelector(".popup__image");
 const popupTitle = document.querySelector(".popup__caption");
 
 // формы
-//popup__form
+/*popup__form
 //const formElement = document.forms;
 //const nameInput = formElement.elements.username;
 //const aboutInput = formElement.elements.about;
 //const formProfileEdit = document.querySelector(".popup__form_profile-edit-form");
-//const formAddCard = document.querySelector(".popup__form_new-card-form");
+//const formAddCard = document.querySelector(".popup__form_new-card-form");*/
+
+/*const formInputs = document.querySelectorAll(".popup__input");*/
 
 const formProfileEdit = document.forms.profile_edit_form;
 const nameInput = formProfileEdit.elements.username;
@@ -63,12 +66,12 @@ const closePopup = (popupToClosed) =>
 
 openEditPopupButton.addEventListener("click", () => {
   openPopup(editPopup);
-  /*hideInputError(formProfileEdit, validationConfig);*/
+  hideErrorsAndButtons(formProfileEdit, validationConfig);
 });
 
 openAddPopupButton.addEventListener("click", () => {
   openPopup(addPopup);
-  /*hideInputError(formAddCard)*/
+  hideErrorsAndButtons(formAddCard, validationConfig);
 });
 
 closePopupButtons.forEach((button) => {
@@ -109,7 +112,6 @@ formProfileEditSubmitHandler = (evt) => {
   closePopup(editPopup);
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
-  /*resetValidation(formProfileEdit);*/
 };
 
 openEditPopupButton.addEventListener("click", openPopupEdit);
