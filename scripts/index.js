@@ -1,5 +1,5 @@
 const validationConfig = {
-  formSelector: ".popup__form",
+  formElement: ".popup__form",
   inputSelector: ".popup__input",
   buttonElement: ".popup__submit-btn",
   inactiveButtonClass: "popup__submit-btn_disabled",
