@@ -1,6 +1,6 @@
 const validationConfig = {
   formElement: ".popup__form",
-  inputSelector: ".popup__input",
+  inputElement: ".popup__input",
   buttonElement: ".popup__submit-btn",
   inactiveButtonClass: "popup__submit-btn_disabled",
   inputErrorClass: "popup__input_invalid",
@@ -64,11 +64,6 @@ const openPopup = (popupToOpen) => popupToOpen.classList.add("popup_opened");
 const closePopup = (popupToClosed) =>
   popupToClosed.classList.remove("popup_opened");
 
-openEditPopupButton.addEventListener("click", () => {
-  openPopup(editPopup);
-  hideErrorsAndButtons(formProfileEdit, validationConfig);
-});
-
 openAddPopupButton.addEventListener("click", () => {
   openPopup(addPopup);
   hideErrorsAndButtons(formAddCard, validationConfig);
@@ -104,6 +99,7 @@ openPopupEdit = () => {
   openPopup(editPopup);
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
+  hideErrorsAndButtons(formProfileEdit, validationConfig);
 };
 
 // форма заполнения редактирования профиля
