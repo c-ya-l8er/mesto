@@ -19,7 +19,7 @@ const hideInputError = (formElement, inputElement, validationConfig) => {
   errorElement.classList.remove(validationConfig.errorClass);
 };
 
-//проверка валидности//
+// проверка валидности //
 const checkInputValidity = (formElement, inputElement, validationConfig) => {
   if (!inputElement.validity.valid) {
     showInputError(
@@ -33,7 +33,7 @@ const checkInputValidity = (formElement, inputElement, validationConfig) => {
   }
 };
 
-//слушатели//
+// слушатели //
 const setEventListeners = (formElement, validationConfig) => {
   const inputList = Array.from(
     formElement.querySelectorAll(validationConfig.inputElement)
@@ -72,14 +72,11 @@ const enableValidation = (validationConfig) => {
     document.querySelectorAll(validationConfig.formElement)
   );
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
     setEventListeners(formElement, validationConfig);
   });
 };
 
-hideErrorsAndButtons = (formElement, validationConfig) => {
+const hideErrorsAndButtons = (formElement, validationConfig) => {
   const inputList = Array.from(
     formElement.querySelectorAll(validationConfig.inputElement)
   );
