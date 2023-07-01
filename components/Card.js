@@ -1,8 +1,10 @@
 export default class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, openImagePopup) {
     this._templateSelector = templateSelector;
+    this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
+    this._openImagePopup = openImagePopup;
   }
 
   _getTemplate() {
@@ -23,9 +25,7 @@ export default class Card {
   }
 
   _handleImageClick() {
-    this._element.querySelector(".card__title").textContent = this._name;
-    this._element.querySelector(".card__image").src = this._link;
-
+    this._openImagePopup(this._link, this._name);
   }
 
   _setEventListeners() {
@@ -37,20 +37,21 @@ export default class Card {
       this._handleTrashClick();
     });
 
-    this._element.addEventListener("click", () => {
-      this._handleImageClick();
+    this._cardImage.addEventListener("click", () => {
+      this._handleImageClick(this._link, this._name);
     });
   }
 
-  createCard() {
+  generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".card__title").textContent = this._name;
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__title").alt = this._name;
+    this._cardName = this._element.querySelector(".card__title");
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardName.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._likeBtn = this._element.querySelector(".card__like-btn");
     this._trashBtn = this._element.querySelector(".card__trash-btn");
-    this._imagePopup = 
-    
+        
     this._setEventListeners();
 
     return this._element;

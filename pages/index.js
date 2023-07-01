@@ -23,8 +23,8 @@ const profileAbout = document.querySelector(".profile__about");
 //const aboutInput = document.querySelector(".popup__input_type_about");
 
 // создание новой карточки
-const cardName = document.querySelector(".card__title");
-const cardImage = document.querySelector(".card__image");
+//const cardName = document.querySelector(".card__title");
+//const cardImage = document.querySelector(".card__image");
 //const cardInput = document.querySelector(".popup__input_type_cardname");
 //const linkInput = document.querySelector(".popup__input_type_link");
 
@@ -111,6 +111,44 @@ const formProfileEditSubmitHandler = (evt) => {
 openEditPopupButton.addEventListener("click", openPopupEdit);
 formProfileEdit.addEventListener("submit", formProfileEditSubmitHandler);
 
+/*/создание карточки
+const createCard = (el) => {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardName = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".card__image");
+  cardName.textContent = el.name;
+  cardImage.src = el.link;
+  cardName.alt = el.name;
+
+  cardElement
+    .querySelector(".card__like-btn")
+    .addEventListener("click", (evt) => {
+      evt.target.classList.toggle("card__like-btn_active");
+    });
+
+  cardElement
+    .querySelector(".card__trash-btn")
+    .addEventListener("click", (evt) => {
+      cardElement.remove();
+    });
+
+  cardImage.addEventListener("click", () => {
+    popupTitle.textContent = el.name;
+    popupImage.src = el.link;
+    popupImage.alt = el.name;
+    openPopup(imagePopup);
+  });
+  return cardElement;
+};*/
+
+const openImagePopup = (link, name) => {
+  popupTitle.textContent = name;
+  popupImage.src = link;
+  popupImage.alt = name;
+  openPopup(imagePopup);
+};
+
+
 //добавление карточки
 const addCard = (evt) => {
   evt.preventDefault();
@@ -121,10 +159,11 @@ const addCard = (evt) => {
 formAddCard.addEventListener("submit", addCard);
 
 //добавление карточек из массива
-initialCards.forEach((initialCard) => {
-  const newCard = new Card(initialCard, ".card-template").createCard();
+initialCards.forEach((card) => {
+  const newCard = new Card(card, ".card-template").generateCard();
   cardsList.append(newCard);
 });
+
 
 const formProfileEditValidator = new FormValidator(validationConfig, formProfileEdit);
 formProfileEditValidator.enableValidation();
