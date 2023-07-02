@@ -160,7 +160,7 @@ formAddCard.addEventListener("submit", addCard);
 
 //добавление карточек из массива
 initialCards.forEach((card) => {
-  const newCard = new Card(card, ".card-template").generateCard();
+  const newCard = new Card(card, ".card-template", openImagePopup).generateCard();
   cardsList.append(newCard);
 });
 
