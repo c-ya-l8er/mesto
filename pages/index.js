@@ -2,31 +2,20 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { initialCards, validationConfig } from "../utils/constants.js";
 
-//enableValidation(validationConfig);
-
 // модальные окна
 const editPopup = document.querySelector(".popup_edit-profile");
 const addPopup = document.querySelector(".popup_add-card");
 const imagePopup = document.querySelector(".popup_open-image");
-//const allPopups = document.querySelectorAll(".popup");
+const allPopups = document.querySelectorAll(".popup");
 
 // кнопки
 const openEditPopupButton = document.querySelector(".profile__edit-btn");
 const openAddPopupButton = document.querySelector(".profile__add-btn");
 const closePopupButtons = document.querySelectorAll(".popup__close-btn");
-//const submitButton = document.querySelector("popup__submit-btn_disabled");
 
 // редактирование профиля
 const profileName = document.querySelector(".profile__username");
 const profileAbout = document.querySelector(".profile__about");
-//const nameInput = document.querySelector(".popup__input_type_username");
-//const aboutInput = document.querySelector(".popup__input_type_about");
-
-// создание новой карточки
-//const cardName = document.querySelector(".card__title");
-//const cardImage = document.querySelector(".card__image");
-//const cardInput = document.querySelector(".popup__input_type_cardname");
-//const linkInput = document.querySelector(".popup__input_type_link");
 
 // добавление карточек из массива
 const cardsList = document.querySelector(".cards");
@@ -36,15 +25,6 @@ const popupImage = document.querySelector(".popup__image");
 const popupTitle = document.querySelector(".popup__caption");
 
 // формы
-/*popup__form
-//const formElement = document.forms;
-//const nameInput = formElement.elements.username;
-//const aboutInput = formElement.elements.about;
-//const formProfileEdit = document.querySelector(".popup__form_profile-edit-form");
-//const formAddCard = document.querySelector(".popup__form_new-card-form");*/
-
-/*const formInputs = document.querySelectorAll(".popup__input");*/
-
 const formProfileEdit = document.forms.profile_edit_form;
 const nameInput = formProfileEdit.elements.username;
 const aboutInput = formProfileEdit.elements.about;
@@ -65,8 +45,9 @@ const closePopup = (popupToClosed) => {
 };
 
 openAddPopupButton.addEventListener("click", () => {
-  openPopup(addPopup);
+  formAddCard.reset();
   formAddCardValidator.hideErrorsAndButtons();
+  openPopup(addPopup);
 });
 
 closePopupButtons.forEach((button) => {
@@ -75,7 +56,7 @@ closePopupButtons.forEach((button) => {
 });
 
 // закрытие модального окна по клику на оверлей
-document.querySelectorAll(".popup").forEach((popup) => {
+allPopups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(popup);
@@ -122,20 +103,6 @@ const createCard = (cardData, templateSelector, openImagePopup) => {
   return newCard.generateCard();
 };
 
-//добавление карточки
-const addCard = (evt) => {
-  const cardObj = {
-    name: cardInput.value,
-    link: linkInput.value,
-  };
-  const cardEl = createCard(cardObj, ".card-template", openImagePopup);
-
-  evt.preventDefault();
-  closePopup(addPopup);
-  cardsList.prepend(cardEl);
-};
-formAddCard.addEventListener("submit", addCard);
-
 //добавление карточек из массива
 initialCards.forEach((card) => {
   const cardEl = createCard(card, ".card-template", openImagePopup);
@@ -149,3 +116,16 @@ const formProfileEditValidator = new FormValidator(
 formProfileEditValidator.enableValidation();
 const formAddCardValidator = new FormValidator(validationConfig, formAddCard);
 formAddCardValidator.enableValidation();
+
+//добавление карточки
+const addCard = (evt) => {
+  const cardData = {
+    name: cardInput.value,
+    link: linkInput.value,
+  };
+  const cardEl = createCard(cardData, ".card-template", openImagePopup);
+  evt.preventDefault();
+  closePopup(addPopup);
+  cardsList.prepend(cardEl);
+};
+formAddCard.addEventListener("submit", addCard);
