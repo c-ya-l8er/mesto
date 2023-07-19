@@ -1,3 +1,5 @@
+export const cardListSection = ".cards";
+
 export const initialCards = [
   {
     name: "Архыз",
