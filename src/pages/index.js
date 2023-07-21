@@ -28,10 +28,19 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
+const openEditProfilePopup = new PopupWithForm(editPopup, () => {
 
-//const openEditPopup = new PopupWithForm()
+  openEditProfilePopup.close();
+});
 
-const openPopupEdit = () => {
+openEditPopupButton.addEventListener("click", () => {
+  formProfileEditValidator.hideErrorsAndButtons();
+  openEditProfilePopup.open();
+});
+
+openEditProfilePopup.setEventListeners();
+
+/*const openEditProfilePopup = () => {
   open(editPopup);
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
@@ -45,13 +54,10 @@ const formProfileEditSubmitHandler = (evt) => {
   profileAbout.textContent = aboutInput.value;
 };
 
-openEditPopupButton.addEventListener("click", openPopupEdit);
+openEditPopupButton.addEventListener("click", openEditProfilePopup);
 formProfileEdit.addEventListener("submit", formProfileEditSubmitHandler);
 
-
-
-
-const openAddCardPopup = new PopupWithForm(addPopup, addCard);
+/*const openAddCardPopup = new PopupWithForm(addPopup, addCard);
 openAddCardPopup.setEventListeners();
 
 //тут вроде всё правильно
@@ -69,9 +75,25 @@ const addCard = (evt) => {
   const cardEl = createCard(cardData, ".card-template", handleCardClick);
   evt.preventDefault();
   openAddCardPopup.close();
-  cardListSection.prepend(cardEl);
-};
-formAddCard.addEventListener("submit", addCard);
+  cardList.prepend(cardEl);
+}; 
+formAddCard.addEventListener("submit", addCard);*/
+
+const openAddCardPopup = new PopupWithForm(addPopup, () => {
+  const data = {
+    name: cardInput.value,
+    link: linkInput.value,
+  };
+  const cardEl = createCard(data, ".card-template", handleCardClick);
+  cardList.addItem(cardEl);
+  openAddCardPopup.close();
+});
+
+openAddPopupButton.addEventListener("click", () => {
+  formAddCardValidator.hideErrorsAndButtons();
+  openAddCardPopup.open();
+});
+openAddCardPopup.setEventListeners();
 
 const openImagePopup = new PopupWithImage(imagePopup);
 
