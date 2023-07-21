@@ -16,8 +16,8 @@ export const profileName = document.querySelector(".profile__username");
 export const profileAbout = document.querySelector(".profile__about");
 
 // открытие фото
-export const popupImage = document.querySelector(".popup__image");
-export const popupTitle = document.querySelector(".popup__caption");
+//export const popupImage = document.querySelector(".popup__image");
+//export const popupTitle = document.querySelector(".popup__caption");
 
 // формы
 export const formProfileEdit = document.forms.profile_edit_form;

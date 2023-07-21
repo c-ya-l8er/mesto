@@ -6,7 +6,7 @@ import {
   editPopup,
   addPopup,
   imagePopup,
-  allPopups,
+  popupElement,
   openEditPopupButton,
   openAddPopupButton,
   closePopupButtons,
@@ -28,24 +28,9 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-/*/ открытие и закрытие модального окна
-const openPopup = (popupToOpen) => {
-  popupToOpen.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEsc);
-};
 
-/*const closePopup = (popupToClosed) => {
-  popupToClosed.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEsc);
-};*/
+//const openEditPopup = new PopupWithForm()
 
-openAddPopupButton.addEventListener("click", () => {
-  formAddCard.reset();
-  formAddCardValidator.hideErrorsAndButtons();
-  open(addPopup);
-});
-
-// редактирование профиля
 const openPopupEdit = () => {
   open(editPopup);
   nameInput.value = profileName.textContent;
@@ -53,29 +38,6 @@ const openPopupEdit = () => {
   formProfileEditValidator.hideErrorsAndButtons();
 };
 
-/*closePopupButtons.forEach((button) => {
-  //const popup = button.closest(".popup");
-  button.addEventListener("click", () => closePopup(popup));
-});
-
-// закрытие модального окна по клику на оверлей
-allPopups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    }
-  });
-});
-
-// закрытие модального окна ESC
-function closeByEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}*/
-
-// форма заполнения редактирования профиля
 const formProfileEditSubmitHandler = (evt) => {
   evt.preventDefault();
   closePopup(editPopup);
@@ -86,12 +48,30 @@ const formProfileEditSubmitHandler = (evt) => {
 openEditPopupButton.addEventListener("click", openPopupEdit);
 formProfileEdit.addEventListener("submit", formProfileEditSubmitHandler);
 
-/*const openImagePopup = (link, name) => {
-  popupTitle.textContent = name;
-  popupImage.src = link;
-  popupImage.alt = name;
-  openPopup(imagePopup);
-};*/
+
+
+
+const openAddCardPopup = new PopupWithForm(addPopup, addCard);
+openAddCardPopup.setEventListeners();
+
+//тут вроде всё правильно
+openAddPopupButton.addEventListener("click", () => {
+  formAddCard.reset(); //тут под вопросом
+  formAddCardValidator.hideErrorsAndButtons();
+  openAddCardPopup.open();
+});
+
+const addCard = (evt) => {
+  const cardData = {
+    name: cardInput.value,
+    link: linkInput.value,
+  };
+  const cardEl = createCard(cardData, ".card-template", handleCardClick);
+  evt.preventDefault();
+  openAddCardPopup.close();
+  cardListSection.prepend(cardEl);
+};
+formAddCard.addEventListener("submit", addCard);
 
 const openImagePopup = new PopupWithImage(imagePopup);
 
@@ -105,6 +85,7 @@ const formProfileEditValidator = new FormValidator(
   formProfileEdit
 );
 formProfileEditValidator.enableValidation();
+
 const formAddCardValidator = new FormValidator(validationConfig, formAddCard);
 formAddCardValidator.enableValidation();
 
@@ -124,16 +105,3 @@ const cardList = new Section(
   cardListSection
 );
 cardList.renderItems();
-
-//добавление карточки
-const addCard = (evt) => {
-  const cardData = {
-    name: cardInput.value,
-    link: linkInput.value,
-  };
-  const cardEl = createCard(cardData, ".card-template", handleCardClick);
-  evt.preventDefault();
-  closePopup(addPopup);
-  cardListSection.prepend(cardEl);
-};
-formAddCard.addEventListener("submit", addCard);
