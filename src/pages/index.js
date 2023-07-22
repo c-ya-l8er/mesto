@@ -28,56 +28,22 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-const openEditProfilePopup = new PopupWithForm(editPopup, () => {
+const addUserInfo = new UserInfo(profileName, profileAbout);
 
+const openEditProfilePopup = new PopupWithForm(editPopup, (data) => {
+  addUserInfo.setUserInfo(data);
   openEditProfilePopup.close();
 });
 
 openEditPopupButton.addEventListener("click", () => {
-  formProfileEditValidator.hideErrorsAndButtons();
   openEditProfilePopup.open();
+  const userInfo = addUserInfo.getUserInfo();
+  nameInput.value = userInfo.name;
+  aboutInput.value = userInfo.about;
+  formProfileEditValidator.hideErrorsAndButtons();
 });
 
 openEditProfilePopup.setEventListeners();
-
-/*const openEditProfilePopup = () => {
-  open(editPopup);
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
-  formProfileEditValidator.hideErrorsAndButtons();
-};
-
-const formProfileEditSubmitHandler = (evt) => {
-  evt.preventDefault();
-  closePopup(editPopup);
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-};
-
-openEditPopupButton.addEventListener("click", openEditProfilePopup);
-formProfileEdit.addEventListener("submit", formProfileEditSubmitHandler);
-
-/*const openAddCardPopup = new PopupWithForm(addPopup, addCard);
-openAddCardPopup.setEventListeners();
-
-//тут вроде всё правильно
-openAddPopupButton.addEventListener("click", () => {
-  formAddCard.reset(); //тут под вопросом
-  formAddCardValidator.hideErrorsAndButtons();
-  openAddCardPopup.open();
-});
-
-const addCard = (evt) => {
-  const cardData = {
-    name: cardInput.value,
-    link: linkInput.value,
-  };
-  const cardEl = createCard(cardData, ".card-template", handleCardClick);
-  evt.preventDefault();
-  openAddCardPopup.close();
-  cardList.prepend(cardEl);
-}; 
-formAddCard.addEventListener("submit", addCard);*/
 
 const openAddCardPopup = new PopupWithForm(addPopup, () => {
   const data = {

@@ -9,15 +9,15 @@ export const popupElement = document.querySelectorAll(".popup");
 // кнопки
 export const openEditPopupButton = document.querySelector(".profile__edit-btn");
 export const openAddPopupButton = document.querySelector(".profile__add-btn");
-//export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
+export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
 
 // редактирование профиля
-export const profileName = document.querySelector(".profile__username");
-export const profileAbout = document.querySelector(".profile__about");
+export const profileName = ".profile__username";
+export const profileAbout = ".profile__about";
 
 // открытие фото
-//export const popupImage = document.querySelector(".popup__image");
-//export const popupTitle = document.querySelector(".popup__caption");
+export const popupImage = document.querySelector(".popup__image");
+export const popupTitle = document.querySelector(".popup__caption");
 
 // формы
 export const formProfileEdit = document.forms.profile_edit_form;
