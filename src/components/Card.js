@@ -22,6 +22,7 @@ export default class Card {
 
   _handleTrashClick() {
     this._element.remove();
+    this._element = null;
   }
 
   _handleImageClick() {

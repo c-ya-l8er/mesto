@@ -15,17 +15,13 @@ export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
 export const profileName = ".profile__username";
 export const profileAbout = ".profile__about";
 
-// открытие фото
-export const popupImage = document.querySelector(".popup__image");
-export const popupTitle = document.querySelector(".popup__caption");
-
 // формы
 export const formProfileEdit = document.forms.profile_edit_form;
 export const nameInput = formProfileEdit.elements.username;
 export const aboutInput = formProfileEdit.elements.about;
 
 export const formAddCard = document.forms.new_card_form;
-export const cardInput = formAddCard.elements.cardname;
+export const cardInput = formAddCard.elements.name;
 export const linkInput = formAddCard.elements.link;
 
 export const initialCards = [

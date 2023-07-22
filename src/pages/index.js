@@ -12,8 +12,6 @@ import {
   closePopupButtons,
   profileName,
   profileAbout,
-  popupImage,
-  popupTitle,
   formProfileEdit,
   nameInput,
   aboutInput,
@@ -42,14 +40,9 @@ openEditPopupButton.addEventListener("click", () => {
   aboutInput.value = userInfo.about;
   formProfileEditValidator.hideErrorsAndButtons();
 });
-
 openEditProfilePopup.setEventListeners();
 
-const openAddCardPopup = new PopupWithForm(addPopup, () => {
-  const data = {
-    name: cardInput.value,
-    link: linkInput.value,
-  };
+const openAddCardPopup = new PopupWithForm(addPopup, (data) => {
   const cardEl = createCard(data, ".card-template", handleCardClick);
   cardList.addItem(cardEl);
   openAddCardPopup.close();
@@ -62,10 +55,10 @@ openAddPopupButton.addEventListener("click", () => {
 openAddCardPopup.setEventListeners();
 
 const openImagePopup = new PopupWithImage(imagePopup);
+openImagePopup.setEventListeners();
 
 const handleCardClick = (link, name) => {
   openImagePopup.open(link, name);
-  openImagePopup.setEventListeners();
 };
 
 const formProfileEditValidator = new FormValidator(
