@@ -19,12 +19,27 @@ import {
   cardInput,
   linkInput,
 } from "../utils/constants.js";
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-71/users/me', {
+  headers: {
+    authorization: 'a04dfc18-37ef-4557-8dab-9c7099f92080'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+//GET https://mesto.nomoreparties.co/v1/cohort-71/users/me*/
+
+
 
 const addUserInfo = new UserInfo(profileName, profileAbout);
 
