@@ -1,32 +1,65 @@
-/*export default class Api {
+export default class Api {
   constructor(options) {
-    this.options = options;
-    this.baseUrl = baseUrl;
-    this.headers = headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+  }
+
+  statusResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    // если ошибка, отклоняем промис
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getInitialCards() {
-    return fetch("https://mesto.nomoreparties.co/v1/cohort-42/cards", {
-      headers: {
-        authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      // если ошибка, отклоняем промис
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then(this.statusResponse);
   }
 
-  // другие методы работы с API
+  setInitialCards(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,     
+      }),
+    }).then(this.statusResponse);
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then(this.statusResponse);
+  }
+
+  setUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    }).then(this.statusResponse);
+  }
+
+  setUserAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    }).then(this.statusResponse);
+  }
+
+  setLike() {}
+
+  removeLike() {}
+
+  removeCard() {}
 }
 
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-71/",
-  headers: {
-    authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
-    "Content-Type": "application/json",
-  },
-});*/

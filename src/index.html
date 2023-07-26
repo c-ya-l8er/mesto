@@ -16,8 +16,8 @@
 
     <main class="content">
         <section class="profile">
-            <button class="profile__avatar-btn" type="button" aria-label="Редактировать"><img
-                    class="profile__avatar" src="<%=require('./images/image_cousteau.jpg')%>" alt="Аватарка"></button>
+            <button class="profile__avatar-btn" type="button" aria-label="Редактировать"><img class="profile__avatar"
+                    src="<%=require('./images/image_cousteau.jpg')%>" alt="Аватарка"></button>
             <div class="profile__info">
                 <h1 class="profile__username">Жак-Ив Кусто</h1>
                 <button class="profile__edit-btn" type="button" aria-label="Редактировать"></button>
@@ -41,7 +41,7 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form popup__form_profile-edit-form" name="profile_edit_form" novalidate>
                 <input class="popup__input popup__input_type_username" id="username-input" minlength='2' maxlength='40'
-                    required type="text" name="username" placeholder="Имя">
+                    required type="text" name="name" placeholder="Имя">
                 <span class="popup__input-error username-input-error"></span>
                 <input class="popup__input popup__input_type_about" id="about-input" minlength="2" maxlength="200"
                     required type="text" name="about" placeholder="О себе">
@@ -88,8 +88,8 @@
             <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
             <h2 class="popup__title">Обновить аватар</h2>
             <form class="popup__form popup__form_update-avatar-form" name="update_avatar_form" novalidate>
-                <input class="popup__input popup__input_type_avatar" id="avatar-input" minlength="2" maxlength="30"
-                    required type="url" name="avatar" placeholder="Ссылка на новый аватар">
+                <input class="popup__input popup__input_type_avatar" id="avatar-input" required type="url" name="avatar"
+                    placeholder="Ссылка на новый аватар">
                 <span class="popup__input-error avatar-input-error"></span>
                 <button class="popup__submit-btn popup__submit-btn_disabled" disabled type="submit">Сохранить</button>
             </form>
@@ -101,7 +101,10 @@
             <img class="card__image" src="#" alt="">
             <div class="card__caption">
                 <h2 class="card__title"></h2>
-                <button class="card__like-btn" type="button" aria-label="Лайк"></button>
+                <div class="card__like-container">
+                    <button class="card__like-btn" type="button" aria-label="Лайк"></button>
+                    <span class="card__like-count">0</span>
+                </div>
             </div>
             <button class="card__trash-btn" type="button" aria-label="Корзина"></button>
         </article>

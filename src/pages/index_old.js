@@ -1,5 +1,4 @@
 import "./index.css";
-
 import {
   initialCards,
   validationConfig,
@@ -13,19 +12,13 @@ import {
   closePopupButtons,
   profileName,
   profileAbout,
-  profileAvatar,
   formProfileEdit,
   nameInput,
   aboutInput,
   formAddCard,
   cardInput,
   linkInput,
-  formUpdateAvatar,
-  avatarInput,
-  avatarPopup,
-  openAvatarPopupButton,
 } from "../utils/constants.js";
-
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -33,61 +26,26 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { data } from "autoprefixer";
 
-/*function statusResponse(res) {
-  
-  if (res.ok) {
-    return res.json();
-  }
-  // если ошибка, отклоняем промис
-  return Promise.reject(`Ошибка: ${res.status}`);
-  
-}
-
-
-//fetch('https://mesto.nomoreparties.co/v1/cohort-71/cards', {
-fetch('https://mesto.nomoreparties.co/v1/cohort-71/users/me/', {  
+fetch('https://mesto.nomoreparties.co/v1/cohort-71/users/me', {
   headers: {
     authorization: 'a04dfc18-37ef-4557-8dab-9c7099f92080'
   }
 })
-.then(res => res.json())
-.then((result) => {
-  console.log(result);
-});*/
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
 
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-71/",
-  headers: {
-    authorization: "a04dfc18-37ef-4557-8dab-9c7099f92080",
-    "Content-Type": "application/json",
-  },
-});
+//GET https://mesto.nomoreparties.co/v1/cohort-71/users/me*/
 
-Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-  ([userInfo, initialCards]) => {
-    //console.log(userInfo);
-    //console.log(initialCards);
-    addUserInfo.setUserInfo(userInfo);
-    //console.log(api.setUserInfo(userInfo));
-    //initialCards.setInitialCards(item);
-    cardList.renderItems(initialCards);
-  }
-);
 
-const addUserInfo = new UserInfo(profileName, profileAbout, profileAvatar);
+
+const addUserInfo = new UserInfo(profileName, profileAbout);
 
 const openEditProfilePopup = new PopupWithForm(editPopup, (data) => {
-  api
-    .setUserInfo(data)
-    .then((userInfo) => {
-      addUserInfo.setUserInfo(userInfo);
-      openEditProfilePopup.close();
-    })
-    .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
-    });
+  addUserInfo.setUserInfo(data);
+  openEditProfilePopup.close();
 });
 
 openEditPopupButton.addEventListener("click", () => {
@@ -99,6 +57,10 @@ openEditPopupButton.addEventListener("click", () => {
 });
 openEditProfilePopup.setEventListeners();
 
+
+
+
+
 const openAddCardPopup = new PopupWithForm(addPopup, (data) => {
   const cardEl = createCard(data, ".card-template", handleCardClick);
   cardList.addItem(cardEl);
@@ -106,31 +68,17 @@ const openAddCardPopup = new PopupWithForm(addPopup, (data) => {
 });
 
 openAddPopupButton.addEventListener("click", () => {
-  openAddCardPopup.open();
   formAddCardValidator.hideErrorsAndButtons();
+  openAddCardPopup.open();
 });
 openAddCardPopup.setEventListeners();
 
+
+
+
+
 const openImagePopup = new PopupWithImage(imagePopup);
 openImagePopup.setEventListeners();
-
-const openUpdateAvatarPopup = new PopupWithForm(avatarPopup, (data) => {
-  api
-    .setUserAvatar(data)
-    .then((userInfo) => {
-      addUserInfo.setUserInfo(userInfo);
-      openUpdateAvatarPopup.close();
-    })
-    .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
-    });
-});
-
-openAvatarPopupButton.addEventListener("click", () => {
-  openUpdateAvatarPopup.open();
-  formUpdateAvatarValidator.hideErrorsAndButtons();
-});
-openUpdateAvatarPopup.setEventListeners();
 
 const handleCardClick = (link, name) => {
   openImagePopup.open(link, name);
@@ -145,12 +93,6 @@ formProfileEditValidator.enableValidation();
 const formAddCardValidator = new FormValidator(validationConfig, formAddCard);
 formAddCardValidator.enableValidation();
 
-const formUpdateAvatarValidator = new FormValidator(
-  validationConfig,
-  formUpdateAvatar
-);
-formUpdateAvatarValidator.enableValidation();
-
 const createCard = (cardData, templateSelector, handleCardClick) => {
   const newCard = new Card(cardData, templateSelector, handleCardClick);
   return newCard.generateCard();
@@ -158,6 +100,7 @@ const createCard = (cardData, templateSelector, handleCardClick) => {
 
 const cardList = new Section(
   {
+    items: initialCards,
     renderer: (item) => {
       const cardEl = createCard(item, ".card-template", handleCardClick);
       cardList.addItem(cardEl);
@@ -165,4 +108,4 @@ const cardList = new Section(
   },
   cardListSection
 );
-cardList.renderItems(initialCards);
+cardList.renderItems();

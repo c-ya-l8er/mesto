@@ -5,24 +5,32 @@ export const editPopup = document.querySelector(".popup_edit-profile");
 export const addPopup = document.querySelector(".popup_add-card");
 export const imagePopup = document.querySelector(".popup_open-image");
 export const popupElement = document.querySelectorAll(".popup");
+export const avatarPopup = document.querySelector(".popup_update-avatar");
+export const confirmPopup = document.querySelector(".popup_confirm");
 
 // кнопки
 export const openEditPopupButton = document.querySelector(".profile__edit-btn");
 export const openAddPopupButton = document.querySelector(".profile__add-btn");
+export const openAvatarPopupButton = document.querySelector(".profile__avatar-btn");
+export const openConfirmPopupButton = document.querySelector(".card__trash-btn")
 export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
 
 // редактирование профиля
 export const profileName = ".profile__username";
 export const profileAbout = ".profile__about";
+export const profileAvatar = ".profile__avatar";
 
 // формы
 export const formProfileEdit = document.forms.profile_edit_form;
-export const nameInput = formProfileEdit.elements.username;
+export const nameInput = formProfileEdit.elements.name;
 export const aboutInput = formProfileEdit.elements.about;
 
 export const formAddCard = document.forms.new_card_form;
 export const cardInput = formAddCard.elements.name;
 export const linkInput = formAddCard.elements.link;
+
+export const formUpdateAvatar = document.forms.update_avatar_form;
+export const avatarInput = formUpdateAvatar.elements.avatar;
 
 export const initialCards = [
   {
@@ -59,3 +67,7 @@ export const validationConfig = {
   inputErrorClass: "popup__input_invalid",
   errorClass: "popup__input-error_active",
 };
+
+
+//Токен: a04dfc18-37ef-4557-8dab-9c7099f92080
+//Идентификатор группы: cohort-71"
