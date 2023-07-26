@@ -455,7 +455,7 @@ padding: 0;
   }
 }
 .profile__avatar {
-  width: 100%;
+  display: block;
   width: 120px;
   height: 120px;
   background-size: cover;
@@ -617,7 +617,7 @@ padding: 0;
   background-repeat: no-repeat;
   cursor: pointer;
   align-self: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 @media screen and (max-width: 690px) {
@@ -686,6 +686,12 @@ cursor: pointer;
   margin: 0;
   padding: 0;
 }
+.card__like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card__like-btn {
   width: 22px;
   height: 19px;
@@ -706,6 +712,17 @@ cursor: pointer;
 .card__like-btn_active {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAyMiAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC4yOTkxIDEuNjgxODZDMjIuNTY3IDMuOTAyMTMgMjIuNTY3IDcuNTQzMzggMjAuMjk5MSA5Ljc4NTg2TDEwLjk4MDQgMTlMMS42ODQxIDkuODA4MDZDMC42MDYyNzcgOC43MjAxMyAwIDcuMjc2OTUgMCA1Ljc0NDk2QzAgNC4yMTI5NyAwLjU4MzgyMyAyLjc2OTc5IDEuNjg0MSAxLjY4MTg2QzMuOTI5NTcgLTAuNTYwNjE5IDcuNjEyMTUgLTAuNTYwNjE5IDkuODgwMDcgMS43MDQwNkwxMC45ODA0IDIuNzkyTDEyLjA4MDYgMS42ODE4NkMxNC4zNDg2IC0wLjU2MDYxOSAxOC4wMzExIC0wLjU2MDYxOSAyMC4yOTkxIDEuNjgxODZaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K);
 }
+.card__like-count {
+  width: 10px;
+  height: 13px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+}
+
 .card__trash-btn {
   position: absolute;
   padding: 0;
