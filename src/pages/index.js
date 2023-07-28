@@ -20,10 +20,12 @@ import {
   formAddCard,
   cardInput,
   linkInput,
-  formUpdateAvatar,
+  formEditAvatar,
   avatarInput,
   avatarPopup,
   openAvatarPopupButton,
+  confirmPopup,
+  openConfirmPopupButton,
 } from "../utils/constants.js";
 
 import Api from "../components/Api.js";
@@ -33,7 +35,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { data } from "autoprefixer";
+//import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
 /*function statusResponse(res) {
   
@@ -44,7 +46,6 @@ import { data } from "autoprefixer";
   return Promise.reject(`Ошибка: ${res.status}`);
   
 }
-
 
 //fetch('https://mesto.nomoreparties.co/v1/cohort-71/cards', {
 fetch('https://mesto.nomoreparties.co/v1/cohort-71/users/me/', {  
@@ -65,16 +66,20 @@ const api = new Api({
   },
 });
 
-Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-  ([userInfo, initialCards]) => {
-    //console.log(userInfo);
-    //console.log(initialCards);
+//let userInfoId;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userInfo, initialCards]) => {
+    //userInfoId = userInfo._id;
     addUserInfo.setUserInfo(userInfo);
-    //console.log(api.setUserInfo(userInfo));
-    //initialCards.setInitialCards(item);
     cardList.renderItems(initialCards);
-  }
-);
+    //console.log(userInfoId);
+    //console.log(currentUser);
+    //console.log(initialCards);
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
 
 const addUserInfo = new UserInfo(profileName, profileAbout, profileAvatar);
 
@@ -100,9 +105,20 @@ openEditPopupButton.addEventListener("click", () => {
 openEditProfilePopup.setEventListeners();
 
 const openAddCardPopup = new PopupWithForm(addPopup, (data) => {
-  const cardEl = createCard(data, ".card-template", handleCardClick);
-  cardList.addItem(cardEl);
+  //const CardEl = createCard(data, ".card-template", handleCardClick);
+  //cardList.addItem(cardEl);
+  //openAddCardPopup.close();
+  //console.log(data);
+  //console.log(CardEl);
+  api.setInitialCards(data)
+  .then((data) => {
+  const CardEl = createCard(data, ".card-template", handleCardClick);
+  cardList.addItem(CardEl);
   openAddCardPopup.close();
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
 });
 
 openAddPopupButton.addEventListener("click", () => {
@@ -114,12 +130,12 @@ openAddCardPopup.setEventListeners();
 const openImagePopup = new PopupWithImage(imagePopup);
 openImagePopup.setEventListeners();
 
-const openUpdateAvatarPopup = new PopupWithForm(avatarPopup, (data) => {
+const openEditAvatarPopup = new PopupWithForm(avatarPopup, (data) => {
   api
     .setUserAvatar(data)
     .then((userInfo) => {
       addUserInfo.setUserInfo(userInfo);
-      openUpdateAvatarPopup.close();
+      openEditAvatarPopup.close();
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
@@ -127,10 +143,29 @@ const openUpdateAvatarPopup = new PopupWithForm(avatarPopup, (data) => {
 });
 
 openAvatarPopupButton.addEventListener("click", () => {
-  openUpdateAvatarPopup.open();
-  formUpdateAvatarValidator.hideErrorsAndButtons();
+  openEditAvatarPopup.open();
+  formEditAvatarValidator.hideErrorsAndButtons();
 });
-openUpdateAvatarPopup.setEventListeners();
+openEditAvatarPopup.setEventListeners();
+
+/*const openConfirmPopup = new PopupWithConfirm(confirmPopup, handleCardDelete);
+
+const handleCardDelete = () => {
+  openConfirmPopup.open();
+  api
+    .removeCard(cardId)
+    .then(() => {
+      this._element.remove();
+      this._element = null;
+      openConfirmPopup.close();
+      console.log(this._element);
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    });
+};
+
+openConfirmPopup.setEventListeners();*/
 
 const handleCardClick = (link, name) => {
   openImagePopup.open(link, name);
@@ -145,14 +180,20 @@ formProfileEditValidator.enableValidation();
 const formAddCardValidator = new FormValidator(validationConfig, formAddCard);
 formAddCardValidator.enableValidation();
 
-const formUpdateAvatarValidator = new FormValidator(
+const formEditAvatarValidator = new FormValidator(
   validationConfig,
-  formUpdateAvatar
+  formEditAvatar
 );
-formUpdateAvatarValidator.enableValidation();
+formEditAvatarValidator.enableValidation();
 
 const createCard = (cardData, templateSelector, handleCardClick) => {
-  const newCard = new Card(cardData, templateSelector, handleCardClick);
+  const newCard = new Card(
+    cardData,
+    templateSelector,
+    handleCardClick,
+    //userInfoId
+  );
+  //console.log(currentUser);
   return newCard.generateCard();
 };
 

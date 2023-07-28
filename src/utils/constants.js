@@ -5,14 +5,15 @@ export const editPopup = document.querySelector(".popup_edit-profile");
 export const addPopup = document.querySelector(".popup_add-card");
 export const imagePopup = document.querySelector(".popup_open-image");
 export const popupElement = document.querySelectorAll(".popup");
-export const avatarPopup = document.querySelector(".popup_update-avatar");
+export const avatarPopup = document.querySelector(".popup_edit-avatar");
 export const confirmPopup = document.querySelector(".popup_confirm");
 
 // кнопки
 export const openEditPopupButton = document.querySelector(".profile__edit-btn");
 export const openAddPopupButton = document.querySelector(".profile__add-btn");
 export const openAvatarPopupButton = document.querySelector(".profile__avatar-btn");
-export const openConfirmPopupButton = document.querySelector(".card__trash-btn")
+export const openConfirmPopupButton = ".card__trash-btn";
+//console.log(openConfirmPopupButton);
 export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
 
 // редактирование профиля
@@ -29,9 +30,10 @@ export const formAddCard = document.forms.new_card_form;
 export const cardInput = formAddCard.elements.name;
 export const linkInput = formAddCard.elements.link;
 
-export const formUpdateAvatar = document.forms.update_avatar_form;
-export const avatarInput = formUpdateAvatar.elements.avatar;
-
+export const formEditAvatar = document.forms.edit_avatar_form;
+//console.log(formEditAvatar);
+export const avatarInput = formEditAvatar.elements.avatar;
+//console.log(avatarInput);
 export const initialCards = [
   {
     name: "Архыз",

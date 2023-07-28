@@ -24,7 +24,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        link: data.link,     
+        link: data.link,
       }),
     }).then(this.statusResponse);
   }
@@ -56,10 +56,24 @@ export default class Api {
     }).then(this.statusResponse);
   }
 
-  setLike() {}
+  setLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this.statusResponse);
+  }
 
-  removeLike() {}
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this.statusResponse);
+  }
 
-  removeCard() {}
+  removeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this.statusResponse);
+  }
 }
-
