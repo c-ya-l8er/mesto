@@ -171,27 +171,22 @@ openAvatarPopupButton.addEventListener("click", () => {
 });
 openEditAvatarPopup.setEventListeners();
 
-// const openConfirmPopup = new PopupWithConfirm(confirmPopup, cardId => {
-//     api
-//     .removeCard(cardId)
-//     .then(() => {
-//       openConfirmPopup.close(cardElement);
-//       cardElement.removeCard();
-//       console.log(cardElement);
-//     })
-//     .catch((err) => {
-//       console.log(err); // выведем ошибку в консоль
-//     })
-//     .finally(()=> {
-//       confirmPopup.close();
-//     })
-// })
-//openConfirmPopup.setEventListeners();
-const openConfirmPopup = new PopupWithConfirm(confirmPopup, handleCardDelete);
+const openConfirmPopup = new PopupWithConfirm(confirmPopup, {
+  handleCardDelete: (cardElement) => {
+    api
+      .removeCard(cardElement.id())
+      .then(() => {
+        openConfirmPopup.close(cardElement);
+        cardElement.removeCard();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  },
+});
 openConfirmPopup.setEventListeners();
 
-const handleCardDelete = (cardElement) => {
-  
+/*const handleCardDelete = (cardElement) => {
   api
     .removeCard(cardElement.id())
     .then(() => {
@@ -202,7 +197,7 @@ const handleCardDelete = (cardElement) => {
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
     });
-    openConfirmPopup.open(removeCard(cardElement));
+  openConfirmPopup.open(removeCard(cardElement));
 };
 
 const handleTrashClick = (cardElement) => {
@@ -225,7 +220,7 @@ const handleSetDislike = (cardData) => {
     cardData.handleLikeClick();
     cardData.likeCounter(data);
   });
-};
+};*/
 
 const formProfileEditValidator = new FormValidator(
   validationConfig,
@@ -277,20 +272,30 @@ function createCard(cardData) {
       },
     },
     {
-      handleSetLike: (cardData) => {
+      handleSetLike: (cardElement) => {
         //alert("button was clicked");
-        api.setLike(cardData.id).then((data) => {
-          cardData.handleLikeClick();
-          cardData.likeCounter(data);
-        });
+        api
+          .setLike(cardElement.id())
+          .then((data) => {
+            cardElement.toggleLikeClick();
+            cardElement.likeCounter(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
     },
     {
-      handleSetDislike: (cardData) => {
-        api.removeLike(cardData.id).then((data) => {
-          cardData.handleLikeClick();
-          cardData.likeCounter(data);
-        });
+      handleSetDislike: (cardElement) => {
+        api
+          .removeLike(cardElement.id())
+          .then((data) => {
+            cardElement.toggleLikeClick();
+            cardElement.likeCounter(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
     },
     userId
