@@ -1,29 +1,35 @@
 export default class Card {
-  constructor(cardData, templateSelector, handleCardClick) {
+  constructor(
+    cardData,
+    templateSelector,
+    { handleCardClick },
+    { handleTrashClick },
+    { handleSetLike },
+    { handleSetDislike },
+    userId
+  ) {
     this._templateSelector = templateSelector;
     this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
     this._handleCardClick = handleCardClick;
-    
-    //this._userInfoId = userInfoId;
+    this._handleTrashClick = handleTrashClick;
+    this._handleSetLike = handleSetLike;
+    this._handleSetDislike = handleSetDislike;
+    this._userId = userId;
     this._cardId = cardData._id;
-    //this._owner = userInfoId;
-    //this._owner = cardData.owner._id;
-    //this._ownerId = cardData.owner._id;
-    //console.log(this._userInfoId);
+    this._ownerId = cardData.owner._id;
+
+    //console.log(this._userId);
+    //console.log(cardData);
     //console.log(cardData._id);
-    //console.log(this._owner);
+    //console.log(cardData.owner._id);
     //console.log(this._likes);
     //console.log(this._ownerId);
     //console.log(this._owner);
     //console.log(this._ownerId);
   }
-
-  /*const cardDeleteButtonClassName = (
-  `card__delete-button ${isOwn ? 'card__delete-button_visible' : 'card__delete-button_hidden'}`
-);*/
 
   _getTemplate() {
     const cardElement = document
@@ -34,43 +40,100 @@ export default class Card {
     return cardElement;
   }
 
-  _handleLikeClick() {
-    this._likeBtn.classList.toggle("card__like-btn_active");
-    const currentCount = parseInt(this._likeCount.textContent, 10);
-    this._likeCount.textContent = currentCount + 1;
+  /*likeCounter(cardData) {
+    this._likeCount.textContent = cardData.likes.length;
+  }*/
+
+  _isLiked() {
+    if (this.likes.some((like) => {return this._like._id === this._userId}));
   }
 
-  _handleTrashClick() {
-    //this._trashBtn.classList.toggle("card__trash-btn");
+  _toggleLikeClick() {
+    this._likeBtn.classList.toggle("card__like-btn_active");
+  }
+
+  _handleLikeClick() {
+    if (this._likeBtn.classList.contains("card__like-btn_active")) {
+      this._handleSetDislike(this);
+    } else {
+      this._handleSetLike(this);
+    }
+  }
+
+  _removeCard() {
     this._element.remove();
     this._element = null;
   }
 
-  _handleImageClick() {
+  id() {
+    return this._cardId;
+  }
+
+  setLike(res) {
+    this._likeCount.textContent = res.likes.length;
+    this._toggleLikeClick();
+  }
+
+  setDislike(res) {
+    this._likeCount.textContent = res.likes.length;
+    this._toggleLikeClick();
+  }
+
+  /*_handleImageClick() {
+    this._handleCardClick(this._link, this._name);
+  }*/
+
+  _setEventListeners() {
+    this._likeBtn = this._element.querySelector(".card__like-btn");
+
+    this._likeBtn.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
+
+    this._trashBtn
+      ? this._trashBtn.addEventListener("click", () => {
+          this._handleTrashClick(this);
+        })
+      : null;
+
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._link, this._name);
+    });
+  }
+
+  _trashBtnState() {
+    if (this._ownerId !== this._userId) {
+      this._trashBtn.remove();
+      this._trashBtn = null;
+    }
+  }
+
+  /*_handleImageClick() {
     this._handleCardClick(this._link, this._name);
   }
 
-  _setEventListeners() {
-    this._likeBtn.addEventListener("click", () => {
-      this._handleLikeClick();
-    });
-
-    this._trashBtn.addEventListener("click", () => {
-      this._handleTrashClick();
-    });
-
-    this._cardImage.addEventListener("click", () => {
-      this._handleImageClick();
-    });
+  isLiked() {
+    return this.likes.some((user) => user._id === this._userId);
   }
 
-  /*isLiked() {
-    //return this.likes.some((user) => user._id === this.userInfoId);
+  likeBtnState() {
+    if (this.isLiked()) {
+      this._likeBtn.classList.add("card__like-btn_active");
+    } else {
+      this._likeBtn.classList.remove("card__like-btn_active");
+    }
+    this._likeCounter();
+  }*/
+
+  /*isOwner() {
+    return this._cardId.some((cardData) => cardData.owner_id === this._userId);
   }
 
-  isOwner() {
-    if (this.owner !== this._userInfoId) {
-      this._trashBtn.remove();
+  trashBtnState() {
+    if (this.isOwner) {
+      this._trasheBtn.classList.add("card__trash-btn_hidden");
+    } else {
+      this._trasheBtn.classList.remove("card__trash-btn_hidden");
     }
   }*/
 
@@ -84,42 +147,14 @@ export default class Card {
     this._likeBtn = this._element.querySelector(".card__like-btn");
     this._trashBtn = this._element.querySelector(".card__trash-btn");
     this._likeCount = this._element.querySelector(".card__like-count");
-    //this._likeCount.textContent = this._likes.length;
-    //if (this.owner === this._userInfoId){
-    //this._trashBtn.remove();
-    //console.log(this.owner);
-    //console.log(this._userInfoId);
-    //}
-    //console.log(this._element);
-    //console.log(this._likes.length);
-    //this.isLiked();
-    //this.isOwner();
+
+    /*if (this._isLiked()) {
+      this._toggleLikeClick();
+    }*/
+
+    this._trashBtnState();
     this._setEventListeners();
 
     return this._element;
   }
 }
-
-/*/ Определяем, являемся ли мы владельцем текущей карточки
-const isOwn = card.owner._id === currentUser._id;
-
-// Создаём переменную, которую после зададим в `className` для кнопки удаления
-const cardDeleteButtonClassName = (
-  `card__delete-button ${isOwn ? 'card__delete-button_visible' : 'card__delete-button_hidden'}`
-);
-
-// Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-// Создаём переменную, которую после зададим в `className` для кнопки лайка
-const cardLikeButtonClassName = `...`;
-
-function handleCardLike(card) {
-  // Снова проверяем, есть ли уже лайк на этой карточке
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
-  
-  // Отправляем запрос в API и получаем обновлённые данные карточки
-  api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-  });
-}*/

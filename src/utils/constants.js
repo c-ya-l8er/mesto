@@ -13,7 +13,11 @@ export const openEditPopupButton = document.querySelector(".profile__edit-btn");
 export const openAddPopupButton = document.querySelector(".profile__add-btn");
 export const openAvatarPopupButton = document.querySelector(".profile__avatar-btn");
 export const openConfirmPopupButton = ".card__trash-btn";
+export const confirmBtn = confirmPopup.querySelector(".popup__submit-btn")
+//console.log(confirmBtn);
 //console.log(openConfirmPopupButton);
+
+
 export const closePopupButtons = document.querySelectorAll(".popup__close-btn");
 
 // редактирование профиля
