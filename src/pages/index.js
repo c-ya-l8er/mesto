@@ -1,32 +1,22 @@
 import "./index.css";
 
 import {
-  initialCards,
   validationConfig,
   cardListSection,
-  editPopup,
   addPopup,
+  editPopup,
   imagePopup,
-  popupElement,
-  openEditPopupButton,
+  avatarPopup,
+  confirmPopup,
   openAddPopupButton,
-  closePopupButtons,
+  openEditPopupButton,
+  openAvatarPopupButton,
   profileName,
   profileAbout,
   profileAvatar,
-  formProfileEdit,
-  nameInput,
-  aboutInput,
   formAddCard,
-  cardInput,
-  linkInput,
   formEditAvatar,
-  avatarInput,
-  avatarPopup,
-  openAvatarPopupButton,
-  confirmPopup,
-  openConfirmPopupButton,
-  confirmBtn,
+  formProfileEdit,
 } from "../utils/constants.js";
 
 import Api from "../components/Api.js";
@@ -54,7 +44,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     addUserInfo.setUserInfo(userInfo);
     cardList.renderItems(initialCards);
   })
-  .then()
   .catch((err) => {
     console.log(err);
   });
@@ -82,9 +71,7 @@ const openEditProfilePopup = new PopupWithForm(editPopup, (data) => {
 
 openEditPopupButton.addEventListener("click", () => {
   openEditProfilePopup.open();
-  const userInfo = addUserInfo.getUserInfo();
-  nameInput.value = userInfo.name;
-  aboutInput.value = userInfo.about;
+  openEditProfilePopup.setInputValues(addUserInfo.getUserInfo())
   formProfileEditValidator.hideErrorsAndButtons();
 });
 openEditProfilePopup.setEventListeners();
@@ -180,7 +167,7 @@ function createCard(cardData) {
     {
       handleSetLike: (cardElement) => {
         api
-          .setLike(cardElement.id())
+          .setLike(cardElement.getId())
           .then((data) => {
             cardElement.toggleLikeClick();
             cardElement.likeCounter(data);
@@ -193,7 +180,7 @@ function createCard(cardData) {
     {
       handleSetDislike: (cardElement) => {
         api
-          .removeLike(cardElement.id())
+          .removeLike(cardElement.getId())
           .then((data) => {
             cardElement.toggleLikeClick();
             cardElement.likeCounter(data);

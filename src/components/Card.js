@@ -22,7 +22,7 @@ export default class Card {
     this._ownerId = cardData.owner._id;
   }
 
-  id() {
+  getId() {
     return this._cardId;
   }
   _getTemplate() {
