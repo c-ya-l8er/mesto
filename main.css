@@ -654,6 +654,12 @@ padding: 0;
   overflow: hidden;
   margin: auto;
 }
+
+.card:hover {
+  transition: 0.4s all;
+  transform: scale(1.1);
+  filter: sepia(1.4);
+}
 .card__image {
 max-width: 282px;
 max-height: 282px;
